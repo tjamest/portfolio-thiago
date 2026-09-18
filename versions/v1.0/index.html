@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de Thiago Gioso Fernandes, Analista de Dados." />
+    <title>Portfólio | Thiago Gioso Fernandes</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-label="Abrir navegação" aria-expanded="false">☰</button>
+      <a class="site-title" href="#sobre">Portfólio</a>
+      <button class="theme-toggle" type="button" aria-label="Alternar tema"><span></span></button>
+      <nav class="navigation" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a><a href="#habilidades">Habilidades</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="sobre" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">ANALISTA DE DADOS · DESENVOLVEDOR</p>
+          <h1 id="hero-title">Olá, eu sou o<br /><strong>Thiago Gioso.</strong></h1>
+          <p class="hero-description">Analista de Dados e Desenvolvedor.</p>
+          <div class="hero-actions" id="profile-links"></div>
+        </div>
+        <div class="profile-art" aria-label="Ilustração abstrata com as iniciais TG">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="profile-initials"><span>T</span><span>G</span></div>
+          <div class="data-dot dot-one"></div><div class="data-dot dot-two"></div><div class="data-dot dot-three"></div>
+        </div>
+      </section>
+
+      <section class="content-section about" aria-labelledby="about-title">
+        <div class="section-title"><span>01</span><h2 id="about-title">Sobre mim</h2></div>
+        <div class="about-grid">
+          <p id="about-copy"></p>
+          <div class="education-list" id="education-list"></div>
+        </div>
+      </section>
+
+      <section class="content-section" id="habilidades" aria-labelledby="skills-title">
+        <div class="section-title"><span>02</span><h2 id="skills-title">Habilidades</h2></div>
+        <div class="skill-groups" id="skill-list"></div>
+      </section>
+
+      <section class="content-section" id="projetos" aria-labelledby="projects-title">
+        <div class="section-title"><span>03</span><h2 id="projects-title">Projetos</h2></div>
+        <p class="subheading">Destaques</p>
+        <div class="project-grid" id="project-list"></div>
+        <a class="all-projects-link" href="https://github.com/tjamest?tab=repositories" target="_blank" rel="noreferrer">Ver todos os repositórios no GitHub <span>↗</span></a>
+      </section>
+
+      <section class="content-section experience" id="experiencia" aria-labelledby="experience-title">
+        <div class="section-title"><span>04</span><h2 id="experience-title">Experiência</h2></div>
+        <div class="timeline" id="experience-list"></div>
+      </section>
+
+      <section class="content-section contact" id="contato" aria-labelledby="contact-title">
+        <div class="section-title"><span>05</span><h2 id="contact-title">Contatos</h2></div>
+        <p class="contact-intro">Aberto a oportunidades em dados, BI e automação.</p>
+        <div class="contact-links" id="contact-links"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">© <span id="current-year"></span> Thiago Gioso Fernandes</footer>
+    <script defer src="assets/js/portfolio-data.js"></script>
+    <script defer src="assets/js/main.js"></script>
+  </body>
+</html>
