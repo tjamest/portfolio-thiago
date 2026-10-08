@@ -1,6 +1,6 @@
 # Portfólio - Thiago Gioso Fernandes
 
-Portfólio de navegação lateral para apresentar experiência, projetos de dados e canais de contato.
+Portfólio de navegação lateral para apresentar experiência em desenvolvimento de software, projetos técnicos e canais de contato. A interface está disponível em português e inglês.
 
 ## Arquitetura
 
@@ -12,12 +12,12 @@ assets/
   css/
     styles.css             tokens visuais, layout e componentes
   js/
-    portfolio-data.js      conteúdo editável do portfólio
-    main.js                renderização dos cards, índice e transições laterais
+    portfolio-data.js      conteúdo editável em português e inglês
+    main.js                renderização, troca de idioma, navegação e transições
   images/                  foto, capas dos projetos e ícones próprios
 ```
 
-O conteúdo fica separado do código de renderização em `portfolio-data.js`. Para atualizar textos, habilidades ou links de projetos, a edição deve acontecer preferencialmente nesse arquivo.
+O conteúdo fica separado do código de renderização em `portfolio-data.js`. Para atualizar textos, habilidades ou links de projetos, edite os dados nos dois idiomas nesse arquivo. O seletor no cabeçalho alterna o idioma da página e atualiza também os metadados e os rótulos acessíveis.
 
 ## Seções
 

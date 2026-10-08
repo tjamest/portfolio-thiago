@@ -3,42 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfólio de Thiago Gioso Fernandes, Analista de Dados e Desenvolvedor." />
+    <meta name="description" content="Portfólio de Thiago Gioso Fernandes, com foco em desenvolvimento de software e experiência complementar em dados." />
     <title>Portfólio | Thiago Gioso Fernandes</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <header class="site-header">
-        <a class="brand" href="#inicio" data-panel-target="inicio" aria-label="Voltar ao início">TG<span>.</span></a>
-        <nav class="section-index" aria-label="Índice de seções">
-          <button type="button" data-panel-target="inicio"><span>01</span> Início</button>
-          <button type="button" data-panel-target="sobre"><span>02</span> Sobre</button>
-          <button type="button" data-panel-target="habilidades"><span>03</span> Habilidades</button>
-          <button type="button" data-panel-target="projetos"><span>04</span> Projetos</button>
-          <button type="button" data-panel-target="experiencia"><span>05</span> Experiência</button>
+        <a class="brand" href="#inicio" data-panel-target="inicio" aria-label="Voltar ao início" data-i18n-aria="accessibility.brandHome">TG<span>.</span></a>
+        <nav class="section-index" aria-label="Índice de seções" data-i18n-aria="accessibility.sectionIndex">
+          <button type="button" data-panel-target="inicio"><span>01</span><span data-i18n="nav.home">Início</span></button>
+          <button type="button" data-panel-target="sobre"><span>02</span><span data-i18n="nav.about">Sobre</span></button>
+          <button type="button" data-panel-target="habilidades"><span>03</span><span data-i18n="nav.skills">Habilidades</span></button>
+          <button type="button" data-panel-target="projetos"><span>04</span><span data-i18n="nav.projects">Projetos</span></button>
+          <button type="button" data-panel-target="experiencia"><span>05</span><span data-i18n="nav.experience">Experiência</span></button>
         </nav>
+        <button class="language-toggle" type="button" aria-label="Mudar idioma para inglês">EN</button>
         <button class="theme-toggle" type="button" aria-label="Alternar tema"><span></span></button>
       </header>
 
       <main class="content-stage">
         <section class="panel panel-home is-active" id="inicio" data-panel="inicio" aria-labelledby="hero-title">
           <div class="home-copy">
-            <p class="eyebrow">PORTFÓLIO / 2026</p>
+            <p class="eyebrow" data-i18n="home.eyebrow">PORTFÓLIO / 2026</p>
             <h1 id="hero-title">Thiago<br /><strong>Gioso.</strong></h1>
-            <p class="role">Analista de Dados<br />e Desenvolvedor</p>
-            <button class="next-panel" type="button" data-panel-target="sobre">Conhecer perfil <span>→</span></button>
+            <p class="role" id="home-role">Desenvolvimento de Software<br />Python · Java · C/C++</p>
+            <button class="next-panel" type="button" data-panel-target="sobre"><span data-i18n="home.next">Conhecer perfil</span> <span>→</span></button>
           </div>
-          <div class="profile-art" aria-label="Ilustração abstrata com as iniciais TG">
+          <div class="profile-art" id="profile-art" aria-label="Ilustração abstrata com as iniciais TG">
             <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
             <div class="profile-initials"><span>T</span><span>G</span></div>
             <div class="data-dot dot-one"></div><div class="data-dot dot-two"></div><div class="data-dot dot-three"></div>
           </div>
-          <aside class="home-note"><span>BASEADO EM</span><strong>Jundiaí, SP</strong><span>IDIOMA</span><strong>Inglês C2</strong></aside>
+          <aside class="home-note"><span data-i18n="home.locationLabel">LOCALIZAÇÃO</span><strong data-i18n="home.locationValue">Brasil</strong><span data-i18n="home.languageLabel">IDIOMA</span><strong data-i18n="home.languageValue">Inglês C2</strong></aside>
         </section>
 
         <section class="panel" id="sobre" data-panel="sobre" aria-labelledby="about-title">
-          <div class="panel-heading"><span>02 / SOBRE</span><h2 id="about-title">Formação que conecta dados e tecnologia.</h2></div>
+          <div class="panel-heading"><span data-i18n="sections.about.eyebrow">02 / SOBRE</span><h2 id="about-title" data-i18n="sections.about.title">Desenvolvimento de software com visão de dados.</h2></div>
           <div class="about-layout">
             <p id="about-copy"></p>
             <div class="education-list" id="education-list"></div>
@@ -46,23 +47,23 @@
         </section>
 
         <section class="panel" id="habilidades" data-panel="habilidades" aria-labelledby="skills-title">
-          <div class="panel-heading"><span>03 / HABILIDADES</span><h2 id="skills-title">Ferramentas que uso para resolver problemas.</h2></div>
+          <div class="panel-heading"><span data-i18n="sections.skills.eyebrow">03 / HABILIDADES</span><h2 id="skills-title" data-i18n="sections.skills.title">Linguagens e ferramentas.</h2></div>
           <div class="skill-groups" id="skill-list"></div>
         </section>
 
         <section class="panel" id="projetos" data-panel="projetos" aria-labelledby="projects-title">
-          <div class="panel-heading panel-heading-inline"><div><span>04 / PROJETOS</span><h2 id="projects-title">Projetos selecionados</h2></div><a href="https://github.com/tjamest?tab=repositories" target="_blank" rel="noreferrer">Todos no GitHub ↗</a></div>
+          <div class="panel-heading panel-heading-inline"><div><span data-i18n="sections.projects.eyebrow">04 / PROJETOS</span><h2 id="projects-title" data-i18n="sections.projects.title">Projetos selecionados</h2></div><a href="https://github.com/tjamest?tab=repositories" target="_blank" rel="noreferrer" data-i18n="sections.projects.all">Todos no GitHub ↗</a></div>
           <div class="project-grid" id="project-list"></div>
         </section>
 
         <section class="panel" id="experiencia" data-panel="experiencia" aria-labelledby="experience-title">
-          <div class="panel-heading"><span>05 / EXPERIÊNCIA</span><h2 id="experience-title">Experiência em dados e desenvolvimento.</h2></div>
+          <div class="panel-heading"><span data-i18n="sections.experience.eyebrow">05 / EXPERIÊNCIA</span><h2 id="experience-title" data-i18n="sections.experience.title">Experiência em tecnologia.</h2></div>
           <div class="timeline" id="experience-list"></div>
         </section>
       </main>
 
       <footer class="contact-footer" id="contato">
-        <p><span>CONTATO</span> Vamos conversar?</p>
+        <p><span data-i18n="contact.eyebrow">CONTATO</span> <strong data-i18n="contact.title">Vamos conversar?</strong></p>
         <div class="contact-links" id="contact-links"></div>
         <small>© <span id="current-year"></span> Thiago Gioso Fernandes</small>
       </footer>

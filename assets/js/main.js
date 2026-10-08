@@ -1,67 +1,91 @@
-const { portfolio } = window;
+const portfolio = window.portfolio;
 
 if (!portfolio) {
   throw new Error('Os dados do portfólio não foram carregados.');
 }
 
+const getValue = (object, path) => path.split('.').reduce((value, key) => value?.[key], object);
 const createLink = (label, url, className) => {
   const externalAttributes = url.startsWith('http') ? ' target="_blank" rel="noreferrer"' : '';
   return `<a class="${className}" href="${url}"${externalAttributes}>${label}</a>`;
 };
 
-document.querySelector('#about-copy').textContent = portfolio.about;
-
-document.querySelector('#education-list').innerHTML = portfolio.education
-  .map((education) => `
-    <article class="education-card">
-      <div><span>${education.period}</span><span>${education.status}</span></div>
-      <h3>${education.degree}</h3>
-      <p>${education.institution}</p>
-    </article>`)
-  .join('');
-
-document.querySelector('#skill-list').innerHTML = portfolio.skills
-  .map((skill) => `
-    <article class="skill-card tone-${skill.tone}">
-      <span>${skill.mark}</span>
-      <h3>${skill.label}</h3>
-      <p>${skill.type}</p>
-    </article>`)
-  .join('');
-
-document.querySelector('#project-list').innerHTML = portfolio.projects
-  .map((project, index) => `
-    <article class="project-card project-${project.accent}">
-      <div class="project-visual" aria-hidden="true"><strong>0${index + 1}</strong><i></i><i></i></div>
-      <div class="project-content">
-        <p>PROJETO 0${index + 1}</p>
-        <h3>${project.title}</h3>
-        <span>${project.tags.join(' · ')}</span>
-        ${createLink('Abrir projeto ↗', project.url, 'project-link')}
-      </div>
-    </article>`)
-  .join('');
-
-document.querySelector('#experience-list').innerHTML = portfolio.experiences
-  .map((experience) => `
-    <article class="timeline-item">
-      <div><span>${experience.period}</span><small>${experience.location}</small></div>
-      <div><h3>${experience.role}</h3><p>${experience.company}</p></div>
-      <p>${experience.summary}</p>
-    </article>`)
-  .join('');
-
-document.querySelector('#contact-links').innerHTML = [
-  createLink('E-mail', portfolio.links.email, 'contact-link'),
-  createLink('LinkedIn ↗', portfolio.links.linkedin, 'contact-link'),
-  createLink('GitHub ↗', portfolio.links.github, 'contact-link'),
-].join('');
-document.querySelector('#current-year').textContent = new Date().getFullYear();
-
 const panels = [...document.querySelectorAll('[data-panel]')];
 const panelTriggers = [...document.querySelectorAll('[data-panel-target]')];
+const languageToggle = document.querySelector('.language-toggle');
+const themeToggle = document.querySelector('.theme-toggle');
+let activeLanguage = portfolio.defaultLanguage;
 let activePanel = 'inicio';
 let isAnimating = false;
+
+const renderLanguage = () => {
+  const content = portfolio.languages[activeLanguage];
+  document.documentElement.lang = activeLanguage;
+  document.title = content.title;
+  document.querySelector('meta[name="description"]').content = content.description;
+
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    element.textContent = getValue(content, element.dataset.i18n);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
+    element.setAttribute('aria-label', getValue(content, element.dataset.i18nAria));
+  });
+
+  document.querySelector('#home-role').textContent = content.home.role;
+  document.querySelector('#profile-art').setAttribute('aria-label', content.accessibility.profileArt);
+  languageToggle.textContent = activeLanguage === 'pt-BR' ? 'EN' : 'PT';
+  languageToggle.setAttribute('aria-label', content.accessibility.switchLanguage);
+  languageToggle.setAttribute('aria-pressed', String(activeLanguage === 'en'));
+  themeToggle.setAttribute('aria-label', content.accessibility.themeToggle);
+  document.querySelector('#about-copy').textContent = content.about;
+
+  document.querySelector('#education-list').innerHTML = content.education
+    .map((education) => `
+      <article class="education-card">
+        <div><span>${education.period}</span><span>${education.status}</span></div>
+        <h3>${education.degree}</h3>
+        <p>${education.institution}</p>
+      </article>`)
+    .join('');
+
+  document.querySelector('#skill-list').innerHTML = content.skills
+    .map((skill) => `
+      <article class="skill-card tone-${skill.tone}">
+        <span>${skill.mark}</span>
+        <h3>${skill.label}</h3>
+        <p>${skill.type}</p>
+      </article>`)
+    .join('');
+
+  document.querySelector('#project-list').innerHTML = content.projects
+    .map((project, index) => `
+      <article class="project-card project-${project.accent}">
+        <div class="project-visual" aria-hidden="true"><strong>0${index + 1}</strong><i></i><i></i></div>
+        <div class="project-content">
+          <p>${content.sections.projects.number} 0${index + 1}</p>
+          <h3>${project.title}</h3>
+          <p class="project-description">${project.description}</p>
+          <span>${project.tags.join(' · ')}</span>
+          ${createLink(content.sections.projects.open, project.url, 'project-link')}
+        </div>
+      </article>`)
+    .join('');
+
+  document.querySelector('#experience-list').innerHTML = content.experiences
+    .map((experience) => `
+      <article class="timeline-item">
+        <div><span>${experience.period}</span><small>${experience.location}</small></div>
+        <div><h3>${experience.role}</h3><p>${experience.company}</p></div>
+        <p>${experience.summary}</p>
+      </article>`)
+    .join('');
+
+  document.querySelector('#contact-links').innerHTML = [
+    createLink(content.contact.email, portfolio.links.email, 'contact-link'),
+    createLink(content.contact.linkedin, portfolio.links.linkedin, 'contact-link'),
+    createLink(content.contact.github, portfolio.links.github, 'contact-link'),
+  ].join('');
+};
 
 const updateIndex = () => {
   panelTriggers.forEach((trigger) => {
@@ -103,7 +127,11 @@ panelTriggers.forEach((trigger) => {
   });
 });
 
-const themeToggle = document.querySelector('.theme-toggle');
+languageToggle.addEventListener('click', () => {
+  activeLanguage = activeLanguage === 'pt-BR' ? 'en' : 'pt-BR';
+  renderLanguage();
+});
+
 let savedTheme = null;
 
 try {
@@ -123,4 +151,5 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
+renderLanguage();
 updateIndex();
